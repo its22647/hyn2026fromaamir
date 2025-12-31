@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>2026 | Muhammad Aamir</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Inter:wght@300;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <canvas id="fireworksCanvas"></canvas>
+
+  <div id="screen1" class="viewport active">
+    <div class="glass-container">
+      <div class="status-dot"></div>
+      <p class="top-label">INITIALIZING NEW ERA</p>
+      <div class="animated-banner">
+        <h1 class="main-display-text"><span class="year-glow">2026</span></h1>
+      </div>
+      <button id="launchBtn" class="cyber-button">LAUNCH SYSTEM <span>🚀</span></button>
+    </div>
+  </div>
+
+  <div id="screen2" class="viewport">
+    <div class="celebration-card">
+      
+      <div class="glass-panel title-glass">
+        <h2 class="wish-title-premium">HAPPY NEW YEAR 2026</h2>
+      </div>
+
+      <div class="glass-panel dua-glass">
+        <p class="dua-text">
+          May Almighty Allah make this new year a source of peace, prosperity, and success for all of us. 
+          May our lives be filled with barakah, health, and endless happiness. Amen. ✨
+        </p>
+      </div>
+
+      <div class="glass-panel name-glass">
+        <span class="from-tag">From</span>
+        <h3 class="sender-name">MUHAMMAD AAMIR</h3>
+      </div>
+
+      <button onclick="resetSystem()" class="reset-btn">REBOOT SYSTEM</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
