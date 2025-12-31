@@ -9,7 +9,7 @@ canvas.height = window.innerHeight;
 
 let particles = [];
 let flashTexts = [];
-let celebrationIntensity = 0.03; 
+let celebrationIntensity = 0.025; 
 
 class Particle {
   constructor(x, y, color, speed) {
@@ -17,11 +17,11 @@ class Particle {
     this.y = y;
     this.color = color;
     this.velocity = {
-      x: (Math.random() - 0.5) * speed,
-      y: (Math.random() - 0.5) * speed
+      x: (Math.random() - 0.5) * (speed * 0.7),
+      y: (Math.random() - 0.5) * (speed * 0.7)
     };
     this.alpha = 1;
-    this.decay = Math.random() * 0.01 + 0.007; 
+    this.decay = Math.random() * 0.01 + 0.005; 
   }
   draw() {
     ctx.save();
@@ -33,7 +33,7 @@ class Particle {
     ctx.restore();
   }
   update() {
-    this.velocity.y += 0.04; 
+    this.velocity.y += 0.035; 
     this.x += this.velocity.x;
     this.y += this.velocity.y;
     this.alpha -= this.decay;
@@ -42,33 +42,31 @@ class Particle {
 
 function createFirework(isHeavy) {
   const x = Math.random() * canvas.width;
-  const y = Math.random() * (canvas.height * 0.6);
-  
-  // Rich Professional Colors
+  const y = Math.random() * (canvas.height * 0.55);
+  // Rich professional colors
   const colors = ['#0077be', '#c5a059', '#a51c30', '#4b0082', '#006400', '#ffffff'];
   const color = colors[Math.floor(Math.random() * colors.length)];
-  
-  const count = isHeavy ? 90 : 30; 
-  const speed = isHeavy ? 8.5 : 3.5; 
+  const count = isHeavy ? 85 : 25; 
+  const speed = isHeavy ? 7 : 3.5; 
   
   for (let i = 0; i < count; i++) {
     particles.push(new Particle(x, y, color, speed));
   }
 
-  // 2026 Logic: Balanced appearance
-  if (isHeavy && Math.random() > 0.82) {
+  // Background 2026: Minimal White Color & Very low quantity
+  if (isHeavy && Math.random() > 0.92) { // 92% filter for very rare appearance
     flashTexts.push({
         x: x - 45,
         y: y,
         alpha: 1.0,
-        color: '#ffd700',
-        speedFactor: 0.006
+        color: 'rgba(255, 255, 255, 0.7)', // Minimal White
+        speedFactor: 0.005 
     });
   }
 }
 
 function animate() {
-  ctx.fillStyle = 'rgba(0, 0, 0, 0.22)';
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   particles.forEach((p, i) => {
@@ -80,13 +78,12 @@ function animate() {
     }
   });
 
-  ctx.font = "bold 35px Orbitron";
+  // Render Background 2026
+  ctx.font = "bold 32px Orbitron";
   flashTexts.forEach((ft, i) => {
       ctx.save();
       ctx.globalAlpha = ft.alpha;
       ctx.fillStyle = ft.color;
-      ctx.shadowBlur = 10;
-      ctx.shadowColor = 'rgba(255, 215, 0, 0.4)';
       ctx.fillText("2026", ft.x, ft.y);
       ctx.restore();
       ft.alpha -= ft.speedFactor; 
@@ -103,11 +100,11 @@ function animate() {
 launchBtn.onclick = () => {
   screen1.classList.remove('active');
   screen2.classList.add('active');
-  celebrationIntensity = 0.28; 
+  celebrationIntensity = 0.22; 
 };
 
 function resetSystem() {
-  celebrationIntensity = 0.03;
+  celebrationIntensity = 0.025;
   flashTexts = [];
   screen2.classList.remove('active');
   screen1.classList.add('active');

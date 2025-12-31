@@ -1,7 +1,7 @@
 :root {
   --neon-blue: #00f2ff;
   --gold: #ffd700;
-  --dark-glass: rgba(15, 15, 15, 0.85);
+  --glass-bg: rgba(255, 255, 255, 0.03);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -24,25 +24,17 @@ body {
 
 .viewport.active { display: flex; flex-direction: column; }
 
-/* Screen 1: Glass Box */
-.glass-container {
-  background: var(--dark-glass);
-  border: 1px solid rgba(0, 242, 255, 0.2);
-  padding: 50px 25px;
+.glass-container, .main-glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 40px 25px;
   text-align: center;
-  backdrop-filter: blur(20px);
-  width: 100%; max-width: 400px;
-  border-radius: 8px;
+  border-radius: 24px;
+  width: 100%;
+  max-width: 400px;
 }
-
-.status-dot {
-  width: 8px; height: 8px; background: var(--neon-blue);
-  border-radius: 50%; margin: 0 auto 15px;
-  box-shadow: 0 0 15px var(--neon-blue);
-  animation: blink 1s infinite;
-}
-
-@keyframes blink { 50% { opacity: 0.2; } }
 
 .year-glow {
   display: inline-block;
@@ -54,54 +46,43 @@ body {
   animation: yearJump 2s ease-in-out infinite alternate;
 }
 
-@keyframes yearJump {
-  from { transform: scale(1); }
-  to { transform: scale(1.08); text-shadow: 0 0 45px var(--neon-blue); }
-}
-
-/* Screen 2: Premium Glass Panels */
-.celebration-card { width: 100%; max-width: 450px; text-align: center; animation: slideUp 0.8s ease; }
-
-.glass-panel {
-  background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 15px;
-  margin-bottom: 15px;
-  padding: 20px;
-}
-
-.title-glass { border-bottom: 2px solid rgba(255, 215, 0, 0.3); }
-
-.wish-title-premium {
+/* Heavy Animated Heading for Screen 2 */
+.wish-title-heavy {
   font-family: 'Orbitron', sans-serif;
-  font-size: clamp(1.2rem, 5vw, 1.8rem);
-  letter-spacing: 3px;
-  background: linear-gradient(90deg, #fff, var(--gold), #fff);
-  background-size: 200% auto;
+  font-size: clamp(1.3rem, 6vw, 1.8rem);
+  letter-spacing: 2px;
+  font-weight: 900;
+  background: linear-gradient(to right, #fff, var(--gold), var(--neon-blue), #fff);
+  background-size: 300% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: shineText 3s linear infinite;
-  font-weight: 900;
+  animation: heavyFlow 4s linear infinite;
 }
 
-@keyframes shineText { to { background-position: 200% center; } }
+@keyframes heavyFlow {
+  0% { background-position: 0% center; }
+  100% { background-position: 300% center; }
+}
 
-.dua-text { font-size: 1.05rem; line-height: 1.7; color: #ddd; font-weight: 300; }
+.divider {
+  width: 50px; height: 3px; background: linear-gradient(to right, var(--gold), var(--neon-blue));
+  margin: 15px auto 25px;
+  border-radius: 2px;
+}
 
-.name-glass { border-left: 3px solid var(--neon-blue); background: rgba(0, 242, 255, 0.02); }
-
-.from-tag { font-size: 0.6rem; color: #777; letter-spacing: 3px; text-transform: uppercase; display: block; margin-bottom: 5px; }
-
-.sender-name { font-family: 'Orbitron', sans-serif; font-size: 1.6rem; color: #fff; letter-spacing: 1px; }
+.dua-text { font-size: 1rem; line-height: 1.8; color: #ddd; font-weight: 300; margin-bottom: 30px; }
+.sender-info { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 20px; }
+.from-tag { font-size: 0.65rem; color: #777; letter-spacing: 3px; text-transform: uppercase; }
+.sender-name { font-family: 'Orbitron', sans-serif; font-size: 1.6rem; color: #fff; margin-top: 5px; }
 
 .cyber-button {
   margin-top: 30px; background: #fff; color: #000; border: none;
-  padding: 18px; font-family: 'Orbitron', sans-serif; font-weight: 900;
-  cursor: pointer; width: 100%; letter-spacing: 2px; border-radius: 4px;
+  padding: 16px; font-family: 'Orbitron', sans-serif; font-weight: 900;
+  cursor: pointer; width: 100%; letter-spacing: 2px; border-radius: 12px;
+  transition: 0.3s;
 }
 
-.reset-btn { margin-top: 25px; background: none; border: none; color: #444; font-size: 0.65rem; cursor: pointer; letter-spacing: 2px; }
+.reset-btn { margin-top: 30px; background: none; border: none; color: #444; font-size: 0.65rem; cursor: pointer; letter-spacing: 2px; }
 
-@keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes yearJump { from { transform: scale(1); } to { transform: scale(1.05); text-shadow: 0 0 40px var(--neon-blue); } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
